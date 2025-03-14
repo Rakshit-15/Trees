@@ -21,7 +21,12 @@ public class TreeMain {
 
 //      printTree(root);
 //        System.out.println(countNodes(root));
-        System.out.print(sumOfAllNode(root));
+//        System.out.print(sumOfAllNode(root));
+//        printPostOrder(root);
+//        System.out.println(getHeight(root));
+//        numNodeGreater(root,2);
+        printLevelWise(root);
+
 
     }
 }

@@ -1,6 +1,92 @@
 package Trees;
 
+import java.util.*;
 public class TreeTest {
+
+    public static void printLevelWise(TreeNode<Integer> root){
+        /* Your class should be named Solution
+         * Don't write main().
+         * Don't read input, it is passed as function argument.
+         * Print output and don't return it.
+         * Taking input is handled automatically.
+         */
+        Queue<TreeNode<Integer>> q=new LinkedList<>();
+
+        q.add(root);
+
+
+        while(!q.isEmpty()){
+
+            int levelSize=q.size();
+
+
+            for(int i=0;i<levelSize;i++){
+                TreeNode<Integer> front=q.poll();
+                System.out.print(front.data+" ");
+
+
+                for(int j=0;j<front.children.size();j++){
+
+                    q.add(front.children.get(j));
+
+                }
+            }
+            System.out.println();
+        }
+
+
+    }
+
+    public static int numNodeGreater(TreeNode<Integer> root,int x){
+
+
+        // Write your code here
+        int count=0;
+        if(root==null){
+            return 0;
+        }
+
+
+
+        for(int i=0;i<root.children.size();i++){
+
+            int smallAns=numNodeGreater(root.children.get(i),x);
+            count=count+smallAns;
+
+        }
+        if(root.data>x)
+        {
+            return 1+count;
+        }
+        return count;
+
+    }
+    public static int getHeight(TreeNode<Integer> root){
+
+
+        if(root==null) return 0;
+        int ans=0;
+
+        for(int i=0;i<root.children.size();i++){
+            int childHeight=getHeight(root.children.get(i));
+            ans=Math.max(ans,childHeight);
+
+        }
+        return 1+ans;
+    }
+
+    public static void printPostOrder(TreeNode<Integer> root){
+
+        if(root==null) return;
+
+        for(int i=0;i<root.children.size();i++){
+            printPostOrder(root.children.get(i));
+
+        }
+        System.out.print(root.data+" ");
+        return;        // without return also,this would work as Java automatically returns to the caller once the recursive call finishes.
+    }
+
 
     public static int sumOfAllNode(TreeNode<Integer> root){
 
